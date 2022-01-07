@@ -27,7 +27,7 @@ client.connect(err => {
                 res.send(docs);
             })
     })
-    app.post('addWatch', (req, res) => {
+    app.post('/addWatch', (req, res) => {
         const file = req.files.file;
         const name = req.body.name;
         const price = req.body.price;
