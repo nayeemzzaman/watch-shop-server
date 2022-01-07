@@ -44,7 +44,7 @@ client.connect(err => {
                 res.send(result.insertedCount > 0);
             })
     })
-    app.get('/isAdmin', (req, res) => {
+    app.post('/isAdmin', (req, res) => {
         const email = req.body.email;
         adminCollection.find({ email: email })
             .toArray((err, watch) => {
