@@ -51,6 +51,4 @@ client.connect(err => {
             })
     })
 });
-app.listen(port, ()=>{
-    console.log(`Listening to localhost:${port}`);
-});
+app.listen(process.env.port || port);
