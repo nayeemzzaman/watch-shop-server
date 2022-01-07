@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
     const watchCollection = client.db("watchshopdb").collection("watches");
+    const adminCollection = client.db("watchshopdb").collection("admin");
 
     app.get('/watches', (req, res) => {
         watchCollection.find({})
@@ -43,7 +44,7 @@ client.connect(err => {
                 res.send(result.insertedCount > 0);
             })
     })
-    app.post('/isAdmin', (req, res) => {
+    app.get('/isAdmin', (req, res) => {
         const email = req.body.email;
         adminCollection.find({ email: email })
             .toArray((err, watch) => {
