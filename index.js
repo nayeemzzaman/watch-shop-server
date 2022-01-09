@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
+const fileUpload = require('express-fileupload');
+const ObjectId = require('mongodb').ObjectID;
 const cors = require('cors');
 require('dotenv').config();
 
@@ -10,7 +12,7 @@ const app = express()
 
 app.use(bodyParser.json());
 app.use(cors());
-
+app.use(fileUpload());
 const port = 4000;
 
 app.get('/', (req, res) => {
@@ -34,7 +36,7 @@ client.connect(err => {
         const newImg = file.data;
         const encImg = newImg.toString('base64');
 
-        let image = {
+        var image = {
             contentType: file.mimeType,
             size: file.size,
             img: Buffer.from(encImg, 'base64')
